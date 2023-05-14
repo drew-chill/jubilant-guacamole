@@ -1,0 +1,31 @@
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv('D:\Missalenous\P1-UK-Bank-Customers.csv', index_col='Customer ID')
+
+# Show first five rows
+print(df.head())
+
+# Show last five rows
+print(df.tail())
+
+# List all columns
+c = list(df.columns)
+print(c)
+
+data_cols = ['Name', 
+            'Surname', 
+            'Gender', 
+            'Age', 
+            'Region', 
+            'Job Classification', 
+            'Date Joined', 
+            'Balance']
+
+#List numbers of rows and columns
+data_cols_df = df.reindex(columns = data_cols)
+print(data_cols_df)
+
+#Create pivot tables
+pivot = pd.pivot_table(df, index = ['Region'], values='Balance', aggfunc=np.sum)
+print(pivot)
